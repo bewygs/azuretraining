@@ -19,4 +19,6 @@ steps:
   displayName: 'Test code quality'
   inputs:
     script: 'python3 flask8.py'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+    failOnStderr: true
   continueOnError: false
