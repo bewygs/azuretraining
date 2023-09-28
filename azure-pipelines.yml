@@ -15,3 +15,8 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     OverWrite: true
+- task: CmdLine@2
+  displayName: 'Test code quality'
+  inputs:
+    script: 'python3 flask8.py'
+  continueOnError: false
