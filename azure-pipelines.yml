@@ -22,3 +22,9 @@ steps:
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
     failOnStderr: true
   continueOnError: false
+- task: CmdLine@2
+  displayName: 'Create image'
+  inputs:
+    script: 'sudo docker build -t benoit_app_2 .'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+  continueOnError: false
