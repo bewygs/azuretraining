@@ -28,3 +28,9 @@ steps:
     script: 'sudo docker build -t benoit_app_2 .'
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
   continueOnError: false
+- task: CmdLine@2
+  displayName: 'Test image'
+  inputs:
+    script: 'sudo docker run --rm -p 8000:8000 benoit_app_2 bash -c "python3 app.py & sleep 2 && curl -X POST -d ''name=Benoit'' http://localhost:5000/hello"'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+  continueOnError: false
