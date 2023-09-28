@@ -17,4 +17,3 @@ if result.returncode != 0:
 # et continue avec le commit
 print("Code de qualité vérifié avec succès.")
 sys.exit(0)
-
