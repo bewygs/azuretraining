@@ -34,3 +34,15 @@ steps:
     script: 'sudo docker run --rm -p 8000:8000 benoit_app_2 bash -c "python3 app.py & sleep 2 && curl -X POST -d ''name=Benoit'' http://localhost:5000/hello"'
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
   continueOnError: false
+- task: CmdLine@2
+  displayName: 'Archive file'
+  inputs:
+    script: 'zip -r app.zip ./*'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  continueOnError: false
